@@ -1,13 +1,18 @@
 "use client";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 
 export default function Home() {
   const [name, setName] = useState<string>("");
 
   const handleName = () => {
     setName("caglar");
+    console.log(name);
     console.log("event done");
   };
+
+  useEffect(() => {
+    console.log(name);
+  }, [name]); //dept list bos ise 1 kere calisir "[] => dept list"
 
   return (
     <div className="form-wrapper">
