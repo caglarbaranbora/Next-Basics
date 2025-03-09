@@ -1,12 +1,11 @@
 "use client";
-import { HtmlContext } from "next/dist/server/route-modules/pages/vendored/contexts/entrypoints";
 import { ChangeEvent, useState } from "react";
 
 export default function Home() {
-  const [names, setNames] = useState<string>("");
+  const [name, setName] = useState<string>("");
 
   const handleName = () => {
-    setNames("caglar");
+    setName("caglar");
     console.log("event done");
   };
 
@@ -17,11 +16,11 @@ export default function Home() {
         <input
           placeholder="name"
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            setNames(e.target.value);
+            setName(e.target.value);
           }}
-          value={names}
+          value={name}
         />
-        <div>{names}</div>
+        <div>{name}</div>
         <button onClick={handleName}>click me</button>
       </div>
     </div>
