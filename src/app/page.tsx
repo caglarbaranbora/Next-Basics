@@ -1,21 +1,24 @@
 "use client";
 import { ChangeEvent, useState, useEffect } from "react";
+import Example from "./component/exampl-component/Example";
+import Link from "next/link";
 
 export default function Home() {
   const [name, setName] = useState<string>("");
+  const [surname, setSurname] = useState<string>("");
 
-  const handleName = () => {
+  const handleGuest = () => {
     setName("caglar");
-    console.log(name);
+    setSurname("bora");
     console.log("event done");
   };
-
   useEffect(() => {
     console.log(name);
-  }, [name]); //dept list bos ise 1 kere calisir "[] => dept list"
+  }, [name, surname]); //dept list bos ise 1 kere calisir "[] => dept list"
 
   return (
     <div className="form-wrapper">
+      <Link href={"/about-us"}>About-US</Link>
       <div className="input-wrapper">
         {/* two way data binding */}
         <input
@@ -25,9 +28,22 @@ export default function Home() {
           }}
           value={name}
         />
+        <input
+          placeholder="surname"
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setSurname(e.target.value);
+          }}
+          value={surname}
+        />
         <div>{name}</div>
-        <button onClick={handleName}>click me</button>
+        <button onClick={handleGuest}>click me</button>
       </div>
+
+      <Example
+        name={name}
+        surname={surname}
+        onClick={(message: string) => alert(message)}
+      />
     </div>
   );
 }
